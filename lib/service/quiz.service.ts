@@ -2,11 +2,30 @@ import { eq, ilike } from 'drizzle-orm';
 import { db } from '../db/drizzle';
 import { categories, Category, NewQuiz, Quiz, quizzes, User, users } from '../db/schema';
 import { getCategoryById } from './category.service';
+import { OQuiz } from '../types/quiz';
+
+function quizFactory() {
+  return {
+    id: quizzes.id,
+    title: quizzes.title,
+    description: quizzes.description,
+    difficulty: quizzes.difficulty,
+    categoryId: quizzes.categoryId,
+    authorId: quizzes.authorId,
+    category: {
+      id: categories.id,
+      name: categories.name,
+      description: categories.description,
+    },
+    createdAt: quizzes.createdAt,
+    updatedAt: quizzes.updatedAt,
+  };
+}
 
 // Récupérer tous les quizzes
-export async function getQuizzes(): Promise<Quiz[]> {
+export async function getQuizzes(): Promise<any[]> {
     try {
-      return await db.select().from(quizzes);
+      return await db.select(quizFactory()).from(quizzes).leftJoin(categories, eq(categories.id, quizzes.categoryId));
     } catch (error) {
       console.log("ERROR::QuizService.getQuizzes", error);
       return [];
@@ -16,9 +35,10 @@ export async function getQuizzes(): Promise<Quiz[]> {
   // Rechercher un quiz par titre
   export async function searchQuizByTitle(title: string): Promise<Quiz | null> {
     try {
-      const quiz = await db
-        .select()
+      const quiz = <any>await db
+        .select(quizFactory())
         .from(quizzes)
+        .leftJoin(categories, eq(categories.id, quizzes.categoryId))
         .where(ilike(quizzes.title, title))
         .limit(1);
       return quiz[0];
@@ -27,11 +47,27 @@ export async function getQuizzes(): Promise<Quiz[]> {
       return null;
     }
   }
-  
+
   // Récupérer un quiz par ID
   export async function getQuizById(id: number): Promise<Quiz | null> {
     try {
-      const quiz = await db.select().from(quizzes).where(eq(quizzes.id, id)).limit(1);
+      const quiz = <any>await db.select({
+        id: quizzes.id,
+        title: quizzes.title,
+        description: quizzes.description,
+        categoryId: quizzes.categoryId,
+        authorId: quizzes.authorId,
+        category: {
+          id: categories.id,
+          name: categories.name,
+          description: categories.description,
+        },
+        createdAt: quizzes.createdAt,
+        updatedAt: quizzes.updatedAt,
+      })
+      .from(quizzes)
+      .leftJoin(categories, eq(categories.id, quizzes.categoryId))
+      .where(eq(quizzes.id, id)).limit(1);
       return quiz[0];
     } catch (error) {
       console.log("ERROR::QuizService.getQuizById", error);

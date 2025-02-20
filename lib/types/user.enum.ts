@@ -1,15 +1,4 @@
 import {
-    pgTable,
-    serial,
-    text,
-    varchar,
-    timestamp,
-    integer,
-    boolean,
-    decimal,
-    primaryKey,
-    unique,
-    foreignKey,
     pgEnum,
   } from "drizzle-orm/pg-core";
   
