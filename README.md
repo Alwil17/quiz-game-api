@@ -28,8 +28,8 @@ This is a starter template for building a SaaS application using **Next.js** wit
 
 ```bash
 git clone https://github.com/nextjs/saas-starter
-cd saas-starter
-pnpm install
+cd quiz-game-api
+npm install
 ```
 
 ## Running Locally
@@ -37,14 +37,14 @@ pnpm install
 Use the included setup script to create your `.env` file:
 
 ```bash
-pnpm db:setup
+npm run db:setup
 ```
 
 Then, run the database migrations and seed the database with a default user and team:
 
 ```bash
-pnpm db:migrate
-pnpm db:seed
+npm run db:migrate
+npm run db:seed
 ```
 
 This will create the following user and team:
@@ -57,7 +57,7 @@ You can, of course, create new users as well through `/sign-up`.
 Finally, run the Next.js development server:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
@@ -66,6 +66,10 @@ Optionally, you can listen for Stripe webhooks locally through their CLI to hand
 
 ```bash
 stripe listen --forward-to localhost:3000/api/stripe/webhook
+```
+```bash
+Documentation
+localhost:3000/docs
 ```
 
 ## Testing Payments
