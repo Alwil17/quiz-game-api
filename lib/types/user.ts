@@ -1,14 +1,3 @@
-// export interface IUser {
-//   email: string;
-//   id: number;
-//   name: string | null;
-//   passwordHash: string;
-//   role: string;
-//   createdAt: Date;
-//   updatedAt: Date;
-//   deletedAt: Date | null;
-// }
-
 import { User } from "../db/schema";
 
 export interface CreateUserDto extends Omit<User, "id" | "createdAt" | "passwordHash"> {

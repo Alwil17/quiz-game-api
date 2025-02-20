@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { CreateUserDto } from '@/lib/types/user';
-import { getUsers, createUser } from '@/lib/service/user';
+import { getUsers, createUser } from '@/lib/service/user.service';
 
 export async function GET() {
   const users = await getUsers();

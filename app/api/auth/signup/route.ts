@@ -1,5 +1,5 @@
-import { signIn, signUp } from "@/lib/service/auth";
-import { createUser } from "@/lib/service/user";
+import { signIn, signUp } from "@/lib/service/auth.service";
+import { createUser } from "@/lib/service/user.service";
 import { CreateUserDto, LoginUserDTO } from "@/lib/types/user";
 import { NextResponse } from "next/server";
 

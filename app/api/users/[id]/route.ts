@@ -1,4 +1,4 @@
-import { getUserById, updateUser, deleteUser } from "@/lib/service/user";
+import { getUserById, updateUser, deleteUser } from "@/lib/service/user.service";
 import { UpdateUserDto } from "@/lib/types/user";
 import { NextResponse } from "next/server";
 

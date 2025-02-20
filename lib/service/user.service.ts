@@ -5,7 +5,6 @@ import { db } from '../db/drizzle';
 import { User, users } from '../db/schema';
 import { CreateUserDto, OUser, UpdateUserDto, UserSearchDTO } from '../types/user';
 
-// Simulated database
 
 export async function getUsers(): Promise<OUser[]> {
     try {

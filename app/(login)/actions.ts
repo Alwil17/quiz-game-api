@@ -25,7 +25,7 @@ import {
   validatedAction,
   validatedActionWithUser,
 } from '@/lib/auth/middleware';
-import { getUser } from '@/lib/service/user';
+import { getUser } from '@/lib/service/user.service';
 
 export async function logActivity(
   teamId: number | null | undefined,

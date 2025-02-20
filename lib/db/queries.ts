@@ -1,7 +1,7 @@
 import { and, desc, eq, isNull } from 'drizzle-orm';
 import { db } from './drizzle';
 import { activityLogs, teamMembers, teams, users } from './schema';
-import { getUser } from '../service/user';
+import { getUser } from '../service/user.service';
 
 export async function getTeamByStripeCustomerId(customerId: string) {
   const result = await db
