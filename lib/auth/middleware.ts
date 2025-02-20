@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { TeamDataWithMembers, User } from '@/lib/db/schema';
 import { getTeamForUser } from '@/lib/db/queries';
-import { getUser } from '../service/user';
+import { getUser } from '../service/user.service';
 import { redirect } from 'next/navigation';
 
 export type ActionState = {

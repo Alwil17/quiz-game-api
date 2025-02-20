@@ -4,7 +4,7 @@ import { db } from '../db/drizzle';
 import { ActivityType, User, users } from '../db/schema';
 import { CreateUserDto, LoginUserDTO, SignedUserDTO } from '../types/user';
 import { logActivity } from '@/app/(login)/actions';
-import { createUser } from './user';
+import { createUser } from './user.service';
 
 export async function signIn (data: LoginUserDTO): Promise<SignedUserDTO | null> {
   try {

@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { Settings } from './settings';
 import { getTeamForUser } from '@/lib/db/queries';
-import { getUser } from '@/lib/service/user';
+import { getUser } from '@/lib/service/user.service';
 
 export default async function SettingsPage() {
   const user = await getUser();
