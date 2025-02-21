@@ -118,7 +118,7 @@ export async function deleteUser(id: number): Promise<boolean> {
 }
 
 export async function getUser(): Promise<User | null> {
-    try {
+    // try {
         const sessionCookie = (await cookies()).get('session');
         if (!sessionCookie || !sessionCookie.value) {
         return null;
@@ -146,8 +146,8 @@ export async function getUser(): Promise<User | null> {
         }
     
         return user[0];
-    } catch (error) {
-        console.log('ERROR::UserService.getUser', error);
-        return null;
-    }
+    // } catch (error) {
+    //     console.log('ERROR::UserService.getUser', error);
+    //     return null;
+    // }
 }

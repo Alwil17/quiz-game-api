@@ -4,13 +4,13 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: number } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  
-  if (!params?.id) {
+  const userID = +(await params).id;
+  if (!userID) {
     return NextResponse.json({ error: "User ID is required" }, { status: 400 });
   }
-  const user = await getUserById(params?.id);
+  const user = await getUserById(userID);
   if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
@@ -20,11 +20,11 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: number } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const data: UpdateUserDto = await request.json();
-    const user = await updateUser(+params.id, data);
+  const data: UpdateUserDto = await request.json();
+    const user = await updateUser(+(await params).id, data);
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
@@ -39,9 +39,9 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: number } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const deleted = await deleteUser(+params.id);
+  const deleted = await deleteUser(+(await params).id);
   if (!deleted) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
