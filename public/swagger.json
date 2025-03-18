@@ -754,6 +754,9 @@
               "hard"
             ]
           },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"

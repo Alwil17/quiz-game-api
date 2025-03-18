@@ -4,27 +4,32 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: number } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   
-  if (!params?.id) {
-    return NextResponse.json({ error: "Category ID is required" }, { status: 400 });
+  try {
+    if (!(await params)?.id) {
+      return NextResponse.json({ error: "Category ID is required" }, { status: 400 });
+    }
+    const user = await getCategoryById(+(await params).id);
+    if (!user) {
+      return NextResponse.json({ error: "Category not found" }, { status: 404 });
+    }
+    const { deletedAt, ...userData } = user;
+    return NextResponse.json(userData);
+  } catch (error) {
+    
+    return NextResponse.json(error, { status: 500 });
   }
-  const user = await getCategoryById(params?.id);
-  if (!user) {
-    return NextResponse.json({ error: "Category not found" }, { status: 404 });
-  }
-  const { deletedAt, ...userData } = user;
-  return NextResponse.json(userData);
 }
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: number } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const data: UpdateCategoryDto = await request.json();
-    const user = await updateCategory(+params.id, data);
+    const user = await updateCategory(+(await params).id, data);
     if (!user) {
       return NextResponse.json({ error: "Category not found" }, { status: 404 });
     }
@@ -39,11 +44,15 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: number } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const deleted = await deleteCategory(+params.id);
-  if (!deleted) {
-    return NextResponse.json({ error: "Category not found" }, { status: 404 });
+  try {
+    const deleted = await deleteCategory(+(await params).id);
+    if (!deleted) {
+      return NextResponse.json({ error: "Category not found" }, { status: 404 });
+    }
+    return new NextResponse(null, { status: 204 });
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
-  return new NextResponse(null, { status: 204 });
 }

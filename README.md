@@ -1,6 +1,6 @@
 # quiz-game-api" 
 
-This is a starter template for building a SaaS application using **Next.js** with support for authentication, Stripe integration for payments, and a dashboard for logged-in users.
+This is a starter template for building a quiz game application using **Next.js** with support for authentication, Stripe integration for payments, and a dashboard for logged-in users.
 
 **Demo: [https://next-saas-start.vercel.app/](https://next-saas-start.vercel.app/)**
 
@@ -43,6 +43,7 @@ npm run db:setup
 Then, run the database migrations and seed the database with a default user and team:
 
 ```bash
+npm run db:generate
 npm run db:migrate
 npm run db:seed
 ```
@@ -82,7 +83,7 @@ To test Stripe payments, use the following test card details:
 
 ## Going to Production
 
-When you're ready to deploy your SaaS application to production, follow these steps:
+When you're ready to deploy your quiz application to production, follow these steps:
 
 ### Set up a production Stripe webhook
 
