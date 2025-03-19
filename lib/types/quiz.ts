@@ -1,6 +1,8 @@
 import { Category, Quiz } from "../db/schema";
 
-export type CreateQuizDto = Omit<Quiz, "id" | "createdAt">
+export interface CreateQuizDto extends Omit<Quiz, "id" | "createdAt"> {
+  password: string;
+}
 
 export type QuizSearchDTO = Partial<Quiz>;
 export interface OQuiz extends Partial<Quiz> {

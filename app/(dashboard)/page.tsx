@@ -1,12 +1,11 @@
-// import { Button } from '@/components/ui/button';
-// import { ArrowRight, CreditCard, Database } from 'lucide-react';
-// import { Terminal } from './terminal';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, CreditCard, Database } from 'lucide-react';
+import { Terminal } from './terminal';
 
 export default function HomePage() {
   return (
     <main>
-      <h1>It's an api go to the documentation page !!! </h1>
-      {/* <section className="py-20">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
             <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
@@ -120,7 +119,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </main>
   );
 }
