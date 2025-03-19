@@ -8,7 +8,9 @@
   "paths": {
     "/api/auth/signin": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Sign in",
         "requestBody": {
           "required": true,
@@ -42,7 +44,9 @@
     },
     "/api/auth/signup": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Create a new user",
         "requestBody": {
           "required": true,
@@ -76,7 +80,9 @@
     },
     "/api/users": {
       "get": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Get all users",
         "security": [
           {
@@ -100,7 +106,9 @@
         }
       },
       "post": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Create a new user",
         "requestBody": {
           "required": true,
@@ -131,7 +139,9 @@
     },
     "/api/users/{id}": {
       "get": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Get user by ID",
         "parameters": [
           {
@@ -160,7 +170,9 @@
         }
       },
       "patch": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Update user",
         "parameters": [
           {
@@ -199,7 +211,9 @@
         }
       },
       "delete": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Delete user",
         "parameters": [
           {
@@ -223,7 +237,9 @@
     },
     "/api/quizzes": {
       "get": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Get all quizzes",
         "responses": {
           "200": {
@@ -245,7 +261,9 @@
         }
       },
       "post": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Create a new quiz",
         "requestBody": {
           "required": true,
@@ -279,7 +297,9 @@
     },
     "/api/quizzes/{id}": {
       "get": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Get quiz by ID",
         "parameters": [
           {
@@ -311,7 +331,9 @@
         }
       },
       "patch": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Update quiz by ID",
         "parameters": [
           {
@@ -355,7 +377,9 @@
         }
       },
       "delete": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Delete quiz by ID",
         "parameters": [
           {
@@ -382,7 +406,9 @@
     },
     "/api/categories": {
       "get": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Get all categories",
         "responses": {
           "200": {
@@ -404,7 +430,9 @@
         }
       },
       "post": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Create a new category",
         "requestBody": {
           "required": true,
@@ -438,7 +466,9 @@
     },
     "/api/categories/{id}": {
       "get": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Get category by ID",
         "parameters": [
           {
@@ -470,7 +500,9 @@
         }
       },
       "patch": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Update category by ID",
         "parameters": [
           {
@@ -514,7 +546,9 @@
         }
       },
       "delete": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Delete category by ID",
         "parameters": [
           {
@@ -541,7 +575,9 @@
     },
     "/api/questions": {
       "get": {
-        "tags": ["Questions"],
+        "tags": [
+          "Questions"
+        ],
         "summary": "Get all questions",
         "responses": {
           "200": {
@@ -563,7 +599,9 @@
         }
       },
       "post": {
-        "tags": ["Questions"],
+        "tags": [
+          "Questions"
+        ],
         "summary": "Create a new question",
         "requestBody": {
           "required": true,
@@ -597,7 +635,9 @@
     },
     "/api/questions/{id}": {
       "get": {
-        "tags": ["Questions"],
+        "tags": [
+          "Questions"
+        ],
         "summary": "Get question by ID",
         "parameters": [
           {
@@ -629,7 +669,9 @@
         }
       },
       "patch": {
-        "tags": ["Questions"],
+        "tags": [
+          "Questions"
+        ],
         "summary": "Update question by ID",
         "parameters": [
           {
@@ -673,7 +715,9 @@
         }
       },
       "delete": {
-        "tags": ["Questions"],
+        "tags": [
+          "Questions"
+        ],
         "summary": "Delete question by ID",
         "parameters": [
           {
@@ -700,7 +744,9 @@
     },
     "/api/quizzes/{id}/questions": {
       "get": {
-        "tags": ["Questions"],
+        "tags": [
+          "Questions"
+        ],
         "summary": "Get questions by quiz ID",
         "parameters": [
           {
@@ -737,7 +783,9 @@
     },
     "/api/answers": {
       "get": {
-        "tags": ["Answers"],
+        "tags": [
+          "Answers"
+        ],
         "summary": "Get all answers",
         "responses": {
           "200": {
@@ -759,7 +807,9 @@
         }
       },
       "post": {
-        "tags": ["Answers"],
+        "tags": [
+          "Answers"
+        ],
         "summary": "Create a new answer",
         "requestBody": {
           "required": true,
@@ -793,7 +843,9 @@
     },
     "/api/answers/{id}": {
       "get": {
-        "tags": ["Answers"],
+        "tags": [
+          "Answers"
+        ],
         "summary": "Get answer by ID",
         "parameters": [
           {
@@ -825,7 +877,9 @@
         }
       },
       "patch": {
-        "tags": ["Answers"],
+        "tags": [
+          "Answers"
+        ],
         "summary": "Update answer by ID",
         "parameters": [
           {
@@ -869,7 +923,9 @@
         }
       },
       "delete": {
-        "tags": ["Answers"],
+        "tags": [
+          "Answers"
+        ],
         "summary": "Delete answer by ID",
         "parameters": [
           {
@@ -896,7 +952,9 @@
     },
     "/api/questions/{id}/answers": {
       "get": {
-        "tags": ["Answers"],
+        "tags": [
+          "Answers"
+        ],
         "summary": "Get answers by question ID",
         "parameters": [
           {
@@ -930,6 +988,202 @@
           }
         }
       }
+    },
+    "/api/games": {
+      "get": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Get all sessions",
+        "responses": {
+          "200": {
+            "description": "List of game sessions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GameSession"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Create a new game session",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Game session created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameSession"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/games/grouped": {
+      "get": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Get all grouped game sessions ",
+        "responses": {
+          "200": {
+            "description": "Liste des sessions de jeu regroupées par utilisateur et classées par score cummulé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GameSessionGrouped"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/games/{id}": {
+      "get": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Get game session by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Game details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameSession"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Game session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Update Game session by ID",
+        "description": "Il s'agira ici de juste modifier le score du jeu démarré. \n\nAinsi nous pouvons initialiser la session de jeu (cf la création) sans mettre le score.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Game updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Game"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "404": {
+            "description": "Game session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Delete game by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Game deleted successfully"
+          },
+          "404": {
+            "description": "Game session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -956,7 +1210,10 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin"]
+            "enum": [
+              "user",
+              "admin"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -967,7 +1224,13 @@
             "format": "date-time"
           }
         },
-        "required": ["id", "name", "email", "role", "createdAt"]
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "createdAt"
+        ]
       },
       "SignedUserDTO": {
         "type": "object",
@@ -987,7 +1250,11 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin", "player"]
+            "enum": [
+              "user",
+              "admin",
+              "player"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -998,7 +1265,13 @@
             "format": "date-time"
           }
         },
-        "required": ["id", "name", "email", "role", "createdAt"]
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "createdAt"
+        ]
       },
       "LoginUserDTO": {
         "type": "object",
@@ -1012,7 +1285,10 @@
             "format": "password"
           }
         },
-        "required": ["email", "password"]
+        "required": [
+          "email",
+          "password"
+        ]
       },
       "CreateUserDto": {
         "type": "object",
@@ -1030,10 +1306,19 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin", "player"]
+            "enum": [
+              "user",
+              "admin",
+              "player"
+            ]
           }
         },
-        "required": ["name", "email", "role", "password"]
+        "required": [
+          "name",
+          "email",
+          "role",
+          "password"
+        ]
       },
       "UpdateUserDto": {
         "type": "object",
@@ -1047,7 +1332,11 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin", "player"]
+            "enum": [
+              "user",
+              "admin",
+              "player"
+            ]
           }
         }
       },
@@ -1071,7 +1360,11 @@
           },
           "difficulty": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           },
           "category": {
             "$ref": "#/components/schemas/Category"
@@ -1085,7 +1378,11 @@
             "format": "date-time"
           }
         },
-        "required": ["title", "categoryId", "authorId"]
+        "required": [
+          "title",
+          "categoryId",
+          "authorId"
+        ]
       },
       "CreateQuizDto": {
         "type": "object",
@@ -1104,10 +1401,18 @@
           },
           "difficulty": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           }
         },
-        "required": ["title", "categoryId", "difficulty"]
+        "required": [
+          "title",
+          "categoryId",
+          "difficulty"
+        ]
       },
       "UpdateQuizDto": {
         "type": "object",
@@ -1126,7 +1431,11 @@
           },
           "difficulty": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           }
         }
       },
@@ -1151,7 +1460,9 @@
             "format": "date-time"
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "CreateCategoryDto": {
         "type": "object",
@@ -1163,7 +1474,9 @@
             "type": "string"
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "UpdateCategoryDto": {
         "type": "object",
@@ -1190,11 +1503,18 @@
           },
           "type": {
             "type": "string",
-            "enum": ["MCQ", "True/False"]
+            "enum": [
+              "MCQ",
+              "True/False"
+            ]
           },
           "level": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -1205,7 +1525,11 @@
             "format": "date-time"
           }
         },
-        "required": ["quizId", "text", "type"]
+        "required": [
+          "quizId",
+          "text",
+          "type"
+        ]
       },
       "CreateQuestionDto": {
         "type": "object",
@@ -1218,14 +1542,25 @@
           },
           "type": {
             "type": "string",
-            "enum": ["MCQ", "True/False"]
+            "enum": [
+              "MCQ",
+              "True/False"
+            ]
           },
           "level": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           }
         },
-        "required": ["quizId", "text", "type"]
+        "required": [
+          "quizId",
+          "text",
+          "type"
+        ]
       },
       "UpdateQuestionDto": {
         "type": "object",
@@ -1235,11 +1570,18 @@
           },
           "type": {
             "type": "string",
-            "enum": ["MCQ", "True/False"]
+            "enum": [
+              "MCQ",
+              "True/False"
+            ]
           },
           "level": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           }
         }
       },
@@ -1267,7 +1609,11 @@
             "format": "date-time"
           }
         },
-        "required": ["questionId", "text", "isCorrect"]
+        "required": [
+          "questionId",
+          "text",
+          "isCorrect"
+        ]
       },
       "CreateAnswerDto": {
         "type": "object",
@@ -1282,7 +1628,11 @@
             "type": "boolean"
           }
         },
-        "required": ["questionId", "text", "isCorrect"]
+        "required": [
+          "questionId",
+          "text",
+          "isCorrect"
+        ]
       },
       "UpdateAnswerDto": {
         "type": "object",
@@ -1294,6 +1644,103 @@
             "type": "boolean"
           }
         }
+      },
+      "GameSession": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "quizId": {
+            "type": "integer"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "quiz": {
+            "$ref": "#/components/schemas/Quiz"
+          },
+          "sessionDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "score",
+          "userId",
+          "quizId"
+        ]
+      },
+      "GameSessionGrouped": {
+        "type": "object",
+        "properties": {
+          "avgScore": {
+            "type": "integer"
+          },
+          "totalScore": {
+            "type": "integer"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameSession"
+            }
+          }
+        },
+        "required": [
+          "totalScore",
+          "user",
+          "games"
+        ]
+      },
+      "CreateGameDto": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "quizId": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "userId",
+          "quizId"
+        ]
+      },
+      "UpdateGameDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "score": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "score"
+        ]
       }
     }
   }

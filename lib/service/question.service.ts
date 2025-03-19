@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db } from "../db/drizzle";
-import { questions, Question, NewQuestion, answers, quizzes } from "../db/schema";
+import { questions, Question, NewQuestion } from "../db/schema";
 import { getQuizById } from "./quiz.service";
 
 // Récupérer toutes les questions
