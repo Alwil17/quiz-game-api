@@ -1,6 +1,8 @@
 import { Category } from "../db/schema";
 
-export type CreateCategoryDto = Omit<Category, "id" | "createdAt">
+export interface CreateCategoryDto extends Omit<Category, "id" | "createdAt"> {
+  password: string;
+}
 
 export type CategorySearchDTO = Partial<Category>;
 
