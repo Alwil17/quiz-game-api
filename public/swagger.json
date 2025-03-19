@@ -572,6 +572,618 @@
           }
         }
       }
+    },
+    "/api/questions": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Get all questions",
+        "responses": {
+          "200": {
+            "description": "List of questions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Question"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Create a new question",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQuestionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Question created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Question"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/questions/{id}": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Get question by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Question details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Question"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Question not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Update question by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateQuestionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Question updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Question"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "404": {
+            "description": "Question not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Delete question by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Question deleted successfully"
+          },
+          "404": {
+            "description": "Question not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/quizzes/{id}/questions": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Get questions by quiz ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of questions for the specified quiz",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Question"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Quiz ID is required"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/answers": {
+      "get": {
+        "tags": [
+          "Answers"
+        ],
+        "summary": "Get all answers",
+        "responses": {
+          "200": {
+            "description": "List of answers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Answer"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Answers"
+        ],
+        "summary": "Create a new answer",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAnswerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Answer created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/answers/{id}": {
+      "get": {
+        "tags": [
+          "Answers"
+        ],
+        "summary": "Get answer by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Answer details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Answer not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Answers"
+        ],
+        "summary": "Update answer by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAnswerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Answer updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "404": {
+            "description": "Answer not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Answers"
+        ],
+        "summary": "Delete answer by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Answer deleted successfully"
+          },
+          "404": {
+            "description": "Answer not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/questions/{id}/answers": {
+      "get": {
+        "tags": [
+          "Answers"
+        ],
+        "summary": "Get answers by question ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of answers for the specified question",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Answer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Question ID is required"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/games": {
+      "get": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Get all sessions",
+        "responses": {
+          "200": {
+            "description": "List of game sessions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GameSession"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Create a new game session",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Game session created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameSession"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/games/grouped": {
+      "get": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Get all grouped game sessions ",
+        "responses": {
+          "200": {
+            "description": "Liste des sessions de jeu regroupées par utilisateur et classées par score cummulé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GameSessionGrouped"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/games/{id}": {
+      "get": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Get game session by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Game details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameSession"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Game session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Update Game session by ID",
+        "description": "Il s'agira ici de juste modifier le score du jeu démarré. \n\nAinsi nous pouvons initialiser la session de jeu (cf la création) sans mettre le score.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGameDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Game updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Game"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "404": {
+            "description": "Game session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Game sessions"
+        ],
+        "summary": "Delete game by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Game deleted successfully"
+          },
+          "404": {
+            "description": "Game session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -876,6 +1488,259 @@
             "type": "string"
           }
         }
+      },
+      "Question": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "quizId": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MCQ",
+              "True/False"
+            ]
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "quizId",
+          "text",
+          "type"
+        ]
+      },
+      "CreateQuestionDto": {
+        "type": "object",
+        "properties": {
+          "quizId": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MCQ",
+              "True/False"
+            ]
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
+          }
+        },
+        "required": [
+          "quizId",
+          "text",
+          "type"
+        ]
+      },
+      "UpdateQuestionDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MCQ",
+              "True/False"
+            ]
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
+          }
+        }
+      },
+      "Answer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "questionId": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "string"
+          },
+          "isCorrect": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "questionId",
+          "text",
+          "isCorrect"
+        ]
+      },
+      "CreateAnswerDto": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "string"
+          },
+          "isCorrect": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "questionId",
+          "text",
+          "isCorrect"
+        ]
+      },
+      "UpdateAnswerDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "isCorrect": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GameSession": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "quizId": {
+            "type": "integer"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "quiz": {
+            "$ref": "#/components/schemas/Quiz"
+          },
+          "sessionDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "score",
+          "userId",
+          "quizId"
+        ]
+      },
+      "GameSessionGrouped": {
+        "type": "object",
+        "properties": {
+          "avgScore": {
+            "type": "integer"
+          },
+          "totalScore": {
+            "type": "integer"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameSession"
+            }
+          }
+        },
+        "required": [
+          "totalScore",
+          "user",
+          "games"
+        ]
+      },
+      "CreateGameDto": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "quizId": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "userId",
+          "quizId"
+        ]
+      },
+      "UpdateGameDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "score": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "score"
+        ]
       }
     }
   }
