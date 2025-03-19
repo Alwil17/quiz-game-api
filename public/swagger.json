@@ -989,6 +989,33 @@
         }
       }
     },
+    "/quizzes/bulk": {
+      "post": {
+        "tags": [
+          "Quizzes"
+        ],
+        "summary": "Créer de catégories avec des quiz en masse",
+        "operationId": "createBulkQuiz",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkQuizDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Liste de quiz en masse créé avec succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          }
+        }
+      }
+    },
     "/api/games": {
       "get": {
         "tags": [
@@ -1740,6 +1767,119 @@
         },
         "required": [
           "score"
+        ]
+      },
+      "BulkQuizDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Le nom de la catégorie"
+          },
+          "description": {
+            "type": "string",
+            "description": "La description de la catégorie des quiz",
+            "nullable": true
+          },
+          "quizzes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizBulkDto"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "quizzes"
+        ]
+      },
+      "QuizBulkDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Le titre du quiz"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ],
+            "description": "Le niveau de difficulté du quiz"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionBulkDto"
+            }
+          }
+        },
+        "required": [
+          "title",
+          "difficulty",
+          "questions"
+        ]
+      },
+      "QuestionBulkDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Le texte de la question"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MCQ",
+              "True/False"
+            ],
+            "description": "Le type de la question"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ],
+            "description": "Le niveau de la question"
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnswerBulkDto"
+            }
+          }
+        },
+        "required": [
+          "text",
+          "type",
+          "level",
+          "answers"
+        ]
+      },
+      "AnswerBulkDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "L'identifiant de la réponse"
+          },
+          "text": {
+            "type": "string",
+            "description": "Le texte de la réponse"
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "description": "Indique si la réponse est correcte"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "isCorrect"
         ]
       }
     }
