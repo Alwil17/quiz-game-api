@@ -1,8 +1,10 @@
 import { eq, ilike } from 'drizzle-orm';
 import { db } from '../db/drizzle';
 import { categories, Category, NewQuiz, Quiz, quizzes, User, users } from '../db/schema';
-import { getCategoryById } from './category.service';
-import { OQuiz } from '../types/quiz';
+import { createCategory, getCategoryById, searchCategoryByName } from './category.service';
+import { BulkQuizDto, OQuiz } from '../types/quiz';
+import { createQuestion } from './question.service';
+import { createAnswer } from './answer.service';
 
 function quizFactory() {
   return {
@@ -20,6 +22,71 @@ function quizFactory() {
     createdAt: quizzes.createdAt,
     updatedAt: quizzes.updatedAt,
   };
+}
+
+// Fonction pour mélanger un tableau
+function shuffle(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Choisir un index aléatoire entre 0 et i
+    const j = Math.floor(Math.random() * (i + 1));
+
+    // Échanger les éléments à l'index i et j
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+export async function importBulkData(datum: BulkQuizDto[]) {
+  try {
+    if (datum?.length > 0) {
+      for (const data of datum) {
+        const category = await searchCategoryByName(data.name);
+        if (!category) {
+          const newCategory = await createCategory({
+            name: data.name,
+            description: data.description,
+          }).catch(() => null);
+          if (newCategory) {
+            const quizDatum = data.quizzes;
+            for (const quizData of quizDatum) {
+              const existedQuiz = await searchQuizByTitle(quizData.title);
+              if (!existedQuiz) {
+                const createdQuiz = await createQuiz({
+                  title: quizData.title,
+                  difficulty: quizData.difficulty,
+                  categoryId: newCategory.id,
+                }).catch(() => null);
+                if (createdQuiz) {
+                  for (const questionData of shuffle(quizData.questions)) {
+                    const createdQuestion = await createQuestion({
+                      quizId: createdQuiz.id,
+                      text: questionData.text,
+                      type: questionData.type,
+                      level: questionData.level,
+                    })
+                    if (createdQuestion) {
+                      for (const answerData of questionData.answers) {
+                        await createAnswer({
+                          questionId: createdQuestion.id,
+                          text: answerData.text,
+                          isCorrect: answerData.isCorrect,
+                        })
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.log("ERROR::QuizService.importBulkData", error);
+    return [];
+  }
 }
 
 // Récupérer tous les quizzes
