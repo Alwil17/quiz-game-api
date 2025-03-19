@@ -8,7 +8,9 @@
   "paths": {
     "/api/auth/signin": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Sign in",
         "requestBody": {
           "required": true,
@@ -42,7 +44,9 @@
     },
     "/api/auth/signup": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Create a new user",
         "requestBody": {
           "required": true,
@@ -76,7 +80,9 @@
     },
     "/api/users": {
       "get": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Get all users",
         "security": [
           {
@@ -100,7 +106,9 @@
         }
       },
       "post": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Create a new user",
         "requestBody": {
           "required": true,
@@ -131,7 +139,9 @@
     },
     "/api/users/{id}": {
       "get": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Get user by ID",
         "parameters": [
           {
@@ -160,7 +170,9 @@
         }
       },
       "patch": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Update user",
         "parameters": [
           {
@@ -199,7 +211,9 @@
         }
       },
       "delete": {
-        "tags": ["Users management"],
+        "tags": [
+          "Users management"
+        ],
         "summary": "Delete user",
         "parameters": [
           {
@@ -223,7 +237,9 @@
     },
     "/api/quizzes": {
       "get": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Get all quizzes",
         "responses": {
           "200": {
@@ -245,7 +261,9 @@
         }
       },
       "post": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Create a new quiz",
         "requestBody": {
           "required": true,
@@ -279,7 +297,9 @@
     },
     "/api/quizzes/{id}": {
       "get": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Get quiz by ID",
         "parameters": [
           {
@@ -311,7 +331,9 @@
         }
       },
       "patch": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Update quiz by ID",
         "parameters": [
           {
@@ -355,7 +377,9 @@
         }
       },
       "delete": {
-        "tags": ["Quizzes"],
+        "tags": [
+          "Quizzes"
+        ],
         "summary": "Delete quiz by ID",
         "parameters": [
           {
@@ -382,7 +406,9 @@
     },
     "/api/categories": {
       "get": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Get all categories",
         "responses": {
           "200": {
@@ -404,7 +430,9 @@
         }
       },
       "post": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Create a new category",
         "requestBody": {
           "required": true,
@@ -438,7 +466,9 @@
     },
     "/api/categories/{id}": {
       "get": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Get category by ID",
         "parameters": [
           {
@@ -470,7 +500,9 @@
         }
       },
       "patch": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Update category by ID",
         "parameters": [
           {
@@ -514,7 +546,9 @@
         }
       },
       "delete": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Delete category by ID",
         "parameters": [
           {
@@ -532,398 +566,6 @@
           },
           "404": {
             "description": "Category not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
-    "/api/questions": {
-      "get": {
-        "tags": ["Questions"],
-        "summary": "Get all questions",
-        "responses": {
-          "200": {
-            "description": "List of questions",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Question"
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Questions"],
-        "summary": "Create a new question",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateQuestionDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Question created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Question"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request data"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
-    "/api/questions/{id}": {
-      "get": {
-        "tags": ["Questions"],
-        "summary": "Get question by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Question details",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Question"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Question not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "patch": {
-        "tags": ["Questions"],
-        "summary": "Update question by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateQuestionDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Question updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Question"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request data"
-          },
-          "404": {
-            "description": "Question not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Questions"],
-        "summary": "Delete question by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Question deleted successfully"
-          },
-          "404": {
-            "description": "Question not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
-    "/api/quizzes/{id}/questions": {
-      "get": {
-        "tags": ["Questions"],
-        "summary": "Get questions by quiz ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of questions for the specified quiz",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Question"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Quiz ID is required"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
-    "/api/answers": {
-      "get": {
-        "tags": ["Answers"],
-        "summary": "Get all answers",
-        "responses": {
-          "200": {
-            "description": "List of answers",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Answer"
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Answers"],
-        "summary": "Create a new answer",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateAnswerDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Answer created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Answer"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request data"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
-    "/api/answers/{id}": {
-      "get": {
-        "tags": ["Answers"],
-        "summary": "Get answer by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Answer details",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Answer"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Answer not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "patch": {
-        "tags": ["Answers"],
-        "summary": "Update answer by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAnswerDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Answer updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Answer"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request data"
-          },
-          "404": {
-            "description": "Answer not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Answers"],
-        "summary": "Delete answer by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Answer deleted successfully"
-          },
-          "404": {
-            "description": "Answer not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
-    "/api/questions/{id}/answers": {
-      "get": {
-        "tags": ["Answers"],
-        "summary": "Get answers by question ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of answers for the specified question",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Answer"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Question ID is required"
           },
           "500": {
             "description": "Internal server error"
@@ -956,7 +598,10 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin"]
+            "enum": [
+              "user",
+              "admin"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -967,7 +612,13 @@
             "format": "date-time"
           }
         },
-        "required": ["id", "name", "email", "role", "createdAt"]
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "createdAt"
+        ]
       },
       "SignedUserDTO": {
         "type": "object",
@@ -987,7 +638,11 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin", "player"]
+            "enum": [
+              "user",
+              "admin",
+              "player"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -998,7 +653,13 @@
             "format": "date-time"
           }
         },
-        "required": ["id", "name", "email", "role", "createdAt"]
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "createdAt"
+        ]
       },
       "LoginUserDTO": {
         "type": "object",
@@ -1012,7 +673,10 @@
             "format": "password"
           }
         },
-        "required": ["email", "password"]
+        "required": [
+          "email",
+          "password"
+        ]
       },
       "CreateUserDto": {
         "type": "object",
@@ -1030,10 +694,19 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin", "player"]
+            "enum": [
+              "user",
+              "admin",
+              "player"
+            ]
           }
         },
-        "required": ["name", "email", "role", "password"]
+        "required": [
+          "name",
+          "email",
+          "role",
+          "password"
+        ]
       },
       "UpdateUserDto": {
         "type": "object",
@@ -1047,7 +720,11 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin", "player"]
+            "enum": [
+              "user",
+              "admin",
+              "player"
+            ]
           }
         }
       },
@@ -1071,7 +748,11 @@
           },
           "difficulty": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           },
           "category": {
             "$ref": "#/components/schemas/Category"
@@ -1085,7 +766,11 @@
             "format": "date-time"
           }
         },
-        "required": ["title", "categoryId", "authorId"]
+        "required": [
+          "title",
+          "categoryId",
+          "authorId"
+        ]
       },
       "CreateQuizDto": {
         "type": "object",
@@ -1104,10 +789,18 @@
           },
           "difficulty": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           }
         },
-        "required": ["title", "categoryId", "difficulty"]
+        "required": [
+          "title",
+          "categoryId",
+          "difficulty"
+        ]
       },
       "UpdateQuizDto": {
         "type": "object",
@@ -1126,7 +819,11 @@
           },
           "difficulty": {
             "type": "string",
-            "enum": ["easy", "medium", "hard"]
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
           }
         }
       },
@@ -1151,7 +848,9 @@
             "format": "date-time"
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "CreateCategoryDto": {
         "type": "object",
@@ -1163,7 +862,9 @@
             "type": "string"
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "UpdateCategoryDto": {
         "type": "object",
@@ -1173,125 +874,6 @@
           },
           "name": {
             "type": "string"
-          }
-        }
-      },
-      "Question": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "quizId": {
-            "type": "integer"
-          },
-          "text": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["MCQ", "True/False"]
-          },
-          "level": {
-            "type": "string",
-            "enum": ["easy", "medium", "hard"]
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": ["quizId", "text", "type"]
-      },
-      "CreateQuestionDto": {
-        "type": "object",
-        "properties": {
-          "quizId": {
-            "type": "integer"
-          },
-          "text": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["MCQ", "True/False"]
-          },
-          "level": {
-            "type": "string",
-            "enum": ["easy", "medium", "hard"]
-          }
-        },
-        "required": ["quizId", "text", "type"]
-      },
-      "UpdateQuestionDto": {
-        "type": "object",
-        "properties": {
-          "text": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["MCQ", "True/False"]
-          },
-          "level": {
-            "type": "string",
-            "enum": ["easy", "medium", "hard"]
-          }
-        }
-      },
-      "Answer": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "questionId": {
-            "type": "integer"
-          },
-          "text": {
-            "type": "string"
-          },
-          "isCorrect": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": ["questionId", "text", "isCorrect"]
-      },
-      "CreateAnswerDto": {
-        "type": "object",
-        "properties": {
-          "questionId": {
-            "type": "integer"
-          },
-          "text": {
-            "type": "string"
-          },
-          "isCorrect": {
-            "type": "boolean"
-          }
-        },
-        "required": ["questionId", "text", "isCorrect"]
-      },
-      "UpdateAnswerDto": {
-        "type": "object",
-        "properties": {
-          "text": {
-            "type": "string"
-          },
-          "isCorrect": {
-            "type": "boolean"
           }
         }
       }
