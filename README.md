@@ -1,4 +1,4 @@
-# quiz-game-api" 
+# quiz-game-api
 
 ## Features
 
