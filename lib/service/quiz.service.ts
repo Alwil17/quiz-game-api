@@ -1,10 +1,10 @@
-import { eq, ilike } from 'drizzle-orm';
-import { db } from '../db/drizzle';
-import { categories, Category, NewQuiz, Quiz, quizzes, User, users } from '../db/schema';
-import { createCategory, getCategoryById, searchCategoryByName } from './category.service';
-import { BulkQuizDto, OQuiz } from '../types/quiz';
-import { createQuestion } from './question.service';
-import { createAnswer } from './answer.service';
+import { eq, ilike } from "drizzle-orm";
+import { db } from "../db/drizzle";
+import { categories, Category, NewQuiz, Quiz, quizzes, User, users } from "../db/schema";
+import { BulkQuizDto } from "../types/quiz";
+import { createAnswer } from "./answer.service";
+import { createCategory, getCategoryById, searchCategoryByName } from "./category.service";
+import { createQuestion } from "./question.service";
 
 function quizFactory() {
   return {
@@ -63,14 +63,14 @@ export async function importBulkData(datum: BulkQuizDto[]) {
                       text: questionData.text,
                       type: questionData.type,
                       level: questionData.level,
-                    })
+                    });
                     if (createdQuestion) {
                       for (const answerData of questionData.answers) {
                         await createAnswer({
                           questionId: createdQuestion.id,
                           text: answerData.text,
                           isCorrect: answerData.isCorrect,
-                        })
+                        });
                       }
                     }
                   }
@@ -91,34 +91,37 @@ export async function importBulkData(datum: BulkQuizDto[]) {
 
 // Récupérer tous les quizzes
 export async function getQuizzes(): Promise<any[]> {
-    try {
-      return await db.select(quizFactory()).from(quizzes).leftJoin(categories, eq(categories.id, quizzes.categoryId));
-    } catch (error) {
-      console.log("ERROR::QuizService.getQuizzes", error);
-      return [];
-    }
+  try {
+    return await db.select(quizFactory()).from(quizzes).leftJoin(categories, eq(categories.id, quizzes.categoryId));
+  } catch (error) {
+    console.log("ERROR::QuizService.getQuizzes", error);
+    return [];
   }
-  
-  // Rechercher un quiz par titre
-  export async function searchQuizByTitle(title: string): Promise<Quiz | null> {
-    try {
-      const quiz = <any>await db
+}
+
+// Rechercher un quiz par titre
+export async function searchQuizByTitle(title: string): Promise<Quiz | null> {
+  try {
+    const quiz = <any>(
+      await db
         .select(quizFactory())
         .from(quizzes)
         .leftJoin(categories, eq(categories.id, quizzes.categoryId))
         .where(ilike(quizzes.title, title))
-        .limit(1);
-      return quiz[0];
-    } catch (error) {
-      console.log("ERROR::QuizService.searchQuizByTitle", error);
-      return null;
-    }
+        .limit(1)
+    );
+    return quiz[0];
+  } catch (error) {
+    console.log("ERROR::QuizService.searchQuizByTitle", error);
+    return null;
   }
+}
 
-  // Récupérer un quiz par ID
-  export async function getQuizById(id: number): Promise<Quiz | null> {
-    try {
-      const quiz = <any>await db.select({
+// Récupérer un quiz par ID
+export async function getQuizById(id: number): Promise<Quiz | null> {
+  try {
+    const quiz = <any>await db
+      .select({
         id: quizzes.id,
         title: quizzes.title,
         description: quizzes.description,
@@ -134,79 +137,75 @@ export async function getQuizzes(): Promise<any[]> {
       })
       .from(quizzes)
       .leftJoin(categories, eq(categories.id, quizzes.categoryId))
-      .where(eq(quizzes.id, id)).limit(1);
-      return quiz[0];
-    } catch (error) {
-      console.log("ERROR::QuizService.getQuizById", error);
-      return null;
-    }
+      .where(eq(quizzes.id, id))
+      .limit(1);
+    return quiz[0];
+  } catch (error) {
+    console.log("ERROR::QuizService.getQuizById", error);
+    return null;
   }
-  
-  // Créer un nouveau quiz
-  export async function createQuiz(data: NewQuiz): Promise<Quiz> {
-    try {
-        if (data.categoryId) {
-            const category = getCategoryById(data.categoryId);
-            if (!category) {
-                throw new Error('Category not found');
-            }
-            const [quiz] = await db.insert(quizzes).values(data).returning();
-            return quiz;
-        }
-        throw new Error('Category ID is required');
-    } catch (error) {
-      console.log("ERROR::QuizService.createQuiz", error);
-      throw error;
-    }
-  }
-  
-  // Mettre à jour un quiz
-  export async function updateQuiz(
-    id: number,
-    data: Partial<Quiz>
-  ): Promise<Quiz | null> {
-    try {
-      const [quiz] = await db
-        .update(quizzes)
-        .set({ ...data })
-        .where(eq(quizzes.id, id))
-        .returning();
+}
+
+// Créer un nouveau quiz
+export async function createQuiz(data: NewQuiz): Promise<Quiz> {
+  try {
+    if (data.categoryId) {
+      const category = getCategoryById(data.categoryId);
+      if (!category) {
+        throw new Error("Category not found");
+      }
+      const [quiz] = await db.insert(quizzes).values(data).returning();
       return quiz;
-    } catch (error) {
-      console.log("ERROR::QuizService.updateQuiz", error);
-      return null;
     }
+    throw new Error("Category ID is required");
+  } catch (error) {
+    console.log("ERROR::QuizService.createQuiz", error);
+    throw error;
   }
-  
-  // Supprimer un quiz
-  export async function deleteQuiz(id: number): Promise<boolean> {
-    try {
-      const result = await db.delete(quizzes).where(eq(quizzes.id, id));
-      return result.length > 0;
-    } catch (error) {
-      console.log("ERROR::QuizService.deleteQuiz", error);
-      return false;
-    }
+}
+
+// Mettre à jour un quiz
+export async function updateQuiz(id: number, data: Partial<Quiz>): Promise<Quiz | null> {
+  try {
+    const [quiz] = await db
+      .update(quizzes)
+      .set({ ...data })
+      .where(eq(quizzes.id, id))
+      .returning();
+    return quiz;
+  } catch (error) {
+    console.log("ERROR::QuizService.updateQuiz", error);
+    return null;
   }
-  
-  // Récupérer les quizzes avec les informations de l'auteur et de la catégorie
-  export async function getQuizzesWithDetails(): Promise<
-    (Quiz & { author: User; category: Category })[]
-  > {
-    try {
-      const quizzesWithDetails = await db
-        .select()
-        .from(quizzes)
-        .innerJoin(users, eq(quizzes.authorId, users.id))
-        .innerJoin(categories, eq(quizzes.categoryId, categories.id));
-  
-      return quizzesWithDetails.map((row) => ({
-        ...row.Quiz,
-        author: row.users,
-        category: row.Category,
-      }));
-    } catch (error) {
-      console.log("ERROR::QuizService.getQuizzesWithDetails", error);
-      return [];
-    }
+}
+
+// Supprimer un quiz
+export async function deleteQuiz(id: number): Promise<boolean> {
+  try {
+    const result = await db.delete(quizzes).where(eq(quizzes.id, id));
+    return result.length > 0;
+  } catch (error) {
+    console.log("ERROR::QuizService.deleteQuiz", error);
+    return false;
   }
+}
+
+// Récupérer les quizzes avec les informations de l'auteur et de la catégorie
+export async function getQuizzesWithDetails(): Promise<(Quiz & { author: User; category: Category })[]> {
+  try {
+    const quizzesWithDetails = await db
+      .select()
+      .from(quizzes)
+      .innerJoin(users, eq(quizzes.authorId, users.id))
+      .innerJoin(categories, eq(quizzes.categoryId, categories.id));
+
+    return quizzesWithDetails.map((row) => ({
+      ...row.Quiz,
+      author: row.users,
+      category: row.Category,
+    }));
+  } catch (error) {
+    console.log("ERROR::QuizService.getQuizzesWithDetails", error);
+    return [];
+  }
+}
