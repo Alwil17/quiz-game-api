@@ -2,9 +2,9 @@ import { eq, ilike } from "drizzle-orm";
 import { db } from "../db/drizzle";
 import { categories, Category, NewQuiz, Quiz, quizzes, User, users } from "../db/schema";
 import { BulkQuizDto } from "../types/quiz";
-import { createAnswer } from "./answer.service";
+import { createAnswer, getAnswersByQuestionId } from "./answer.service";
 import { createCategory, getCategoryById, searchCategoryByName } from "./category.service";
-import { createQuestion } from "./question.service";
+import { createQuestion, getQuestionsByQuizId } from "./question.service";
 
 function quizFactory() {
   return {
@@ -118,13 +118,16 @@ export async function searchQuizByTitle(title: string): Promise<Quiz | null> {
 }
 
 // Récupérer un quiz par ID
-export async function getQuizById(id: number): Promise<Quiz | null> {
+// Récupérer un quiz par ID avec questions et réponses
+export async function getQuizById(id: number): Promise<any> {
   try {
+    // Récupérer le quiz avec sa catégorie
     const quiz = <any>await db
       .select({
         id: quizzes.id,
         title: quizzes.title,
         description: quizzes.description,
+        difficulty: quizzes.difficulty,
         categoryId: quizzes.categoryId,
         authorId: quizzes.authorId,
         category: {
@@ -139,7 +142,28 @@ export async function getQuizById(id: number): Promise<Quiz | null> {
       .leftJoin(categories, eq(categories.id, quizzes.categoryId))
       .where(eq(quizzes.id, id))
       .limit(1);
-    return quiz[0];
+
+    if (!quiz[0]) return null;
+
+    // Récupérer les questions associées au quiz
+    const quizQuestions = await getQuestionsByQuizId(id);
+
+    // Pour chaque question, récupérer ses réponses
+    const questionsWithAnswers = await Promise.all(
+      quizQuestions.map(async (question) => {
+        const questionAnswers = await getAnswersByQuestionId(question.id);
+        return {
+          ...question,
+          answers: questionAnswers,
+        };
+      })
+    );
+
+    // Ajouter les questions avec réponses au quiz
+    return {
+      ...quiz[0],
+      questions: questionsWithAnswers,
+    };
   } catch (error) {
     console.log("ERROR::QuizService.getQuizById", error);
     return null;
