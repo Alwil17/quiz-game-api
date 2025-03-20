@@ -1,9 +1,5 @@
 # quiz-game-api" 
 
-This is a starter template for building a quiz game application using **Next.js** with support for authentication, Stripe integration for payments, and a dashboard for logged-in users.
-
-**Demo: [https://next-saas-start.vercel.app/](https://next-saas-start.vercel.app/)**
-
 ## Features
 
 - Marketing landing page (`/`) with animated Terminal element
