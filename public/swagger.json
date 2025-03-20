@@ -994,7 +994,7 @@
         "tags": [
           "Quizzes"
         ],
-        "summary": "Créer de catégories avec des quiz en masse",
+        "summary": "Créer des catégories avec des quiz en masse",
         "operationId": "createBulkQuiz",
         "requestBody": {
           "required": true,
@@ -1877,7 +1877,6 @@
           }
         },
         "required": [
-          "id",
           "text",
           "isCorrect"
         ]
